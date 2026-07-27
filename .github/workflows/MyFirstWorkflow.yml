@@ -20,8 +20,7 @@ jobs:
     steps:
       - name: Checking the hostname
         run: hostname
-  job3:
-    name: Checkout implemented
-    runs-on: ubuntu-latest
-    uses: actions/checkout@5.0.0
+      - name: Checkout implemented
+        uses: actions/checkout@5.0.0
+
         
