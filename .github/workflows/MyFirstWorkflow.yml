@@ -10,21 +10,21 @@ jobs:
       - name: HelloWorld 
         run: |
           mkdir hello
-          echo 'ls -ltr' >> hello/list.txt
-          echo 'HelloWorld' >> hello/helloworld.txt
+          echo 'ls -ltr' >> hello/lists.txt
+          echo 'HelloWorld' >> hello/helloworlds.txt
       - name: Checking the os Release of machine and running a sleep command for 20 secs
         run: |
-          cat /etc/os-release >> os-release.txt
+          cat /etc/os-release >> os-releases.txt
       - name: Upload Artifact file
         uses: actions/upload-artifact@v7
         with:
-          path: ./os-release.txt
+          path: ./os-releases.txt
       - name: Upload Artifact from folder with exclusion
         uses: actions/upload-artifact@v7
         with:
           path: |
             hello/
-            !**/list.txt
+            !**/lists.txt
   job2:
     name: job2 
     needs: job1
