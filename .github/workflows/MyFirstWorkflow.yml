@@ -15,15 +15,6 @@ jobs:
       - name: Checking the os Release of machine and running a sleep command for 20 secs
         run: |
           cat /etc/os-release >> os-release.txt
-  job2:
-    name: job2 
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checking the hostname
-        run: hostname
-      - name: Checkout implemented
-        uses: actions/checkout@v7
       - name: Upload Artifact file
         uses: actions/upload-artifact@v7
         with:
@@ -34,3 +25,13 @@ jobs:
           path: |
             hello/
             !**/list.txt
+  job2:
+    name: job2 
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking the hostname
+        run: hostname
+      - name: Checkout implemented
+        uses: actions/checkout@v7
+      
