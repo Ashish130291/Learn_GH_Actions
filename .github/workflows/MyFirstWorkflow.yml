@@ -10,8 +10,8 @@ jobs:
       - name: HelloWorld 
         run: |
           mkdir hello
-          echo "ls -ltr" >> hello/list.txt
-          echo "HelloWorld" >> hello/helloworld.txt
+          echo 'ls -ltr' >> hello/list.txt
+          echo 'HelloWorld' >> hello/helloworld.txt
       - name: Checking the os Release of machine and running a sleep command for 20 secs
         run: |
           cat /etc/os-release >> os-release.txt
