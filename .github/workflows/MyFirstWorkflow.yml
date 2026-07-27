@@ -2,8 +2,6 @@ name: MyFirstWorkflow
 on: 
   push:
   workflow_dispatch:
-  schedule: 
-    - cron: "*5 * * * *"
 jobs:
   job1:
     name: job1
@@ -22,5 +20,9 @@ jobs:
     steps:
       - name: Checking the hostname
         run: hostname
+  job3:
+    name: Checkout implemented
+    runs-on: ubuntu-latest
+    uses: actions/checkout@5.0.0
       - name: checking the memory
         run: ps -ef  
