@@ -1,5 +1,8 @@
 name: MyFirstWorkflow
-on: push
+on: 
+  push:
+  workflow_dispatch:
+  schedule: "5 * * * *"
 jobs:
   job1:
     name: job1
