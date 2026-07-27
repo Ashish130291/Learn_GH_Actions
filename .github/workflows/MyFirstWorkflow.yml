@@ -1,10 +1,11 @@
 name: MyFirstWorkflow
 on: push
 jobs:
-  - name: job1 
-    runs-on: ubuntu-latest
-    steps:
-      - name: HelloWorld 
-        run: echo "HelloWorld"
-      - name: Checking the os Release of machine 
-        run: cat /etc/os-release
+  job1:
+    - name: job1
+      runs-on: ubuntu-latest
+      steps:
+        - name: HelloWorld 
+          run: echo "HelloWorld"
+        - name: Checking the os Release of machine 
+          run: cat /etc/os-release
