@@ -9,3 +9,11 @@ jobs:
         run: echo "HelloWorld"
       - name: Checking the os Release of machine 
         run: cat /etc/os-release
+  job2:
+    name: job2 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking the hostname
+        run: hostname
+      - name: checking the memory
+        run: ps -ef  
