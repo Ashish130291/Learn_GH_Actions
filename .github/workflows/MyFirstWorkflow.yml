@@ -18,10 +18,12 @@ jobs:
       - name: Upload Artifact file
         uses: actions/upload-artifact@v7
         with:
+          name: Uploading-OS-Release Artifact
           path: ./os-releases.txt
       - name: Upload Artifact from folder with exclusion
         uses: actions/upload-artifact@v7
         with:
+          name: Upload Artifact from folder with exclusion
           path: |
             hello/
             !**/lists.txt
