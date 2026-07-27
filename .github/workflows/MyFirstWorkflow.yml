@@ -24,5 +24,4 @@ jobs:
     name: Checkout implemented
     runs-on: ubuntu-latest
     uses: actions/checkout@5.0.0
-      - name: checking the memory
-        run: ps -ef  
+        
