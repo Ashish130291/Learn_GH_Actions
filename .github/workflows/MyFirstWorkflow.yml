@@ -8,11 +8,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: HelloWorld 
-        run: echo "HelloWorld"
+        run: |
+          mkdir hello
+          echo "ls -ltr" >> hello/list.txt
+          echo "HelloWorld" >> hello/helloworld.txt
       - name: Checking the os Release of machine and running a sleep command for 20 secs
         run: |
-          cat /etc/os-release
-          sleep 20
+          cat /etc/os-release >> os-release.txt
   job2:
     name: job2 
     needs: job1
@@ -22,5 +24,13 @@ jobs:
         run: hostname
       - name: Checkout implemented
         uses: actions/checkout@v7
-
-        
+      - name: Upload Artifact file
+        uses: actions/upload-artifact@v7
+        with:
+          path: ./os-release.txt
+      - name: Upload Artifact from folder with exclusion
+        uses: actions/upload-artifact@v7
+        with:
+          path: |
+            hello/
+            !**/list.txt
