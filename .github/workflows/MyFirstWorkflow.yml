@@ -7,10 +7,13 @@ jobs:
     steps:
       - name: HelloWorld 
         run: echo "HelloWorld"
-      - name: Checking the os Release of machine 
-        run: cat /etc/os-release
+      - name: Checking the os Release of machine and running a sleep command for 20 secs
+        run: |
+          cat /etc/os-release
+          sleep 20
   job2:
     name: job2 
+    needs: job1
     runs-on: ubuntu-latest
     steps:
       - name: Checking the hostname
