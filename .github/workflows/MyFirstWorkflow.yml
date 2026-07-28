@@ -1,7 +1,8 @@
 name: MyFirstWorkflow
 on: 
   push:
-    - 'feature-*'
+    branches:
+      - 'feature-*'
   workflow_dispatch:
 jobs:
   job1:
