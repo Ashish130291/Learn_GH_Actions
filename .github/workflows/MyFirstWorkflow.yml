@@ -33,11 +33,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Downloading the artifact 
-        uses: actions/download-artifact@v3.1.0
+        uses: actions/download-artifact@v7
         with:
           name: Uploading-OS-Release Artifact
       - name: Downloading the artifact folder 
-        uses: actions/download-artifact@v3.1.0
+        uses: actions/download-artifact@v7
         with:
           name: Upload Artifact from folder with exclusion
 
