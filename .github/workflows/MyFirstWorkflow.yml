@@ -3,7 +3,11 @@ on:
   push:
     branches:
       - 'feature-*'
+      - main
   workflow_dispatch:
+  pull_request:
+    branches:
+      - main
 jobs:
   job1:
     name: job1
