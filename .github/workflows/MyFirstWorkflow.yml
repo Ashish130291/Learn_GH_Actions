@@ -54,4 +54,14 @@ jobs:
         run: |
           echo "[INFO] The Application name is $APP_NAME and the user who is using it is $USER_NAME and the environment is $ENV"
       - name: Refering secret password
-        run: echo "[INFO] the app password is ${{ secrets.APP_PASSWORD }}"
+        run: echo "[INFO] the app password is ${{ secrets.APP_PASSWORD }} DONT USE IT" 
+  job3:
+    name: Job3
+    runs-on: ubuntu-latest
+    needs: 
+      - job1
+    steps:
+      - name: Refering in-built variables 
+        run: |
+          echo "Triggered by ${{ github.event_name }} and ${{ github.actor }}"
+          echo " Current steps are running in ${{ runner.os }}"
