@@ -60,8 +60,25 @@ jobs:
     runs-on: ubuntu-latest
     needs: 
       - job1
+      - job2
     steps:
       - name: Refering in-built variables 
         run: |
           echo "Triggered by ${{ github.event_name }} and ${{ github.actor }}"
           echo " Current steps are running in ${{ runner.os }}"
+  Staging:
+    name: Stage Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refer Env Variable
+        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{vars.PASSWORD}}"
+    environment:
+      name: Staging
+  Production:
+    name: Production Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refer Env Variable
+        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{vars.PASSWORD}}"        
+    environment:
+      name: Production    
