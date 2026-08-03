@@ -8,6 +8,10 @@ on:
   pull_request:
     branches:
       - main
+env:
+  APP_NAME: DEMO_APP
+  USER_NAME: ASHISH_SADANAND
+  ENV: PRODUCTION
 jobs:
   job1:
     name: job1
@@ -47,6 +51,7 @@ jobs:
         with:
           name: Upload Artifact from folder with exclusion
       - name: Status Code for pull request check
-        run: exit 0
+        run: |
+          echo '[INFO] The Application name is $APP_NAME and the user who is using it is $USER_NAME and the environment is $ENV'
 
       
