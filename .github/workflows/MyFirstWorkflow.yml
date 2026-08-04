@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Refer Env Variable
-        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{vars.PASSWORD}}"
+        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{secrets.PASSWORD}}"
     environment:
       name: Staging
   Production:
@@ -79,6 +79,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Refer Env Variable
-        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{vars.PASSWORD}}"        
+        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{secrets.PASSWORD}}"        
     environment:
       name: Production    
