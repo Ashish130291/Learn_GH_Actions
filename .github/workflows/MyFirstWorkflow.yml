@@ -69,6 +69,10 @@ jobs:
   Staging:
     name: Stage Deployment
     runs-on: ubuntu-latest
+    needs: 
+      - job1
+      - job2
+      - job3
     steps:
       - name: Refer Env Variable
         run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{secrets.PASSWORD}}"
@@ -76,6 +80,10 @@ jobs:
       name: Staging
   Production:
     name: Production Deployment
+    needs: 
+      - job1
+      - job2
+      - job3
     runs-on: ubuntu-latest
     steps:
       - name: Refer Env Variable
