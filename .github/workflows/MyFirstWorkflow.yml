@@ -87,6 +87,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Refer Env Variable
-        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{secrets.PASSWORD}}"        
+        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{secrets.PASSWORD}} and the reference is ${{github.ref}}"        
     environment:
       name: Production    
