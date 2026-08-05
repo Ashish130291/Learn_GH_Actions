@@ -25,5 +25,12 @@ jobs:
            python -m pip install --upgrade pip
            pip install -r requirements.txt
        - name: Run Unit Tests
-         run: pytest -v
+         run: |
+           mkdir reports/
+           pytest --cov=. --cov-report=html:reports/htmlcov --cov-report=term
+       - name: Upload code Coverage report
+         uses: actions/Upload-artifacts@7
+         with:
+           name: unit test report
+           path: reports/
         
