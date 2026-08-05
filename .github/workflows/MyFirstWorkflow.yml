@@ -4,89 +4,26 @@ on:
     branches:
       - main
       - demo
+      - test
   workflow_dispatch:
   pull_request:
     branches:
       - main
-env:
-  APP_NAME: DEMO_APP
-  USER_NAME: ASHISH_SADANAND
-  ENV: PRODUCTION
 jobs:
-  job1:
-    name: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: HelloWorld 
-        run: |
-          mkdir hello
-          echo 'ls -ltr' >> hello/lists.txt
-          echo 'HelloWorld' >> hello/helloworlds.txt
-      - name: Checking the os Release of machine and running a sleep command for 20 secs
-        run: |
-          cat /etc/os-release >> os-releases.txt
-      - name: Upload Artifact file
-        uses: actions/upload-artifact@v7
-        with:
-          name: Uploading-OS-Release Artifact
-          path: ./os-releases.txt
-      - name: Upload Artifact from folder with exclusion
-        uses: actions/upload-artifact@v7
-        with:
-          name: Upload Artifact from folder with exclusion
-          path: |
-            hello/
-            !**/lists.txt
-  job2:
-    name: job2 
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Downloading the artifact 
-        uses: actions/download-artifact@v7
-        with:
-          name: Uploading-OS-Release Artifact
-      - name: Downloading the artifact folder 
-        uses: actions/download-artifact@v7
-        with:
-          name: Upload Artifact from folder with exclusion
-      - name: Status Code for pull request check
-        run: |
-          echo "[INFO] The Application name is $APP_NAME and the user who is using it is $USER_NAME and the environment is $ENV"
-      - name: Refering secret password
-        run: echo "[INFO] the app password is ${{ secrets.APP_PASSWORD }} DONT USE IT" 
-  job3:
-    name: Job3
-    runs-on: ubuntu-latest
-    needs: 
-      - job1
-      - job2
-    steps:
-      - name: Refering in-built variables 
-        run: |
-          echo "Triggered by ${{ github.event_name }} and ${{ github.actor }}"
-          echo " Current steps are running in ${{ runner.os }}"
-  Staging:
-    name: Stage Deployment
-    runs-on: ubuntu-latest
-    needs: 
-      - job1
-      - job2
-      - job3
-    steps:
-      - name: Refer Env Variable
-        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{secrets.PASSWORD}}"
-    environment:
-      name: Staging
-  Production:
-    name: Production Deployment
-    needs: 
-      - job1
-      - job2
-      - job3
-    runs-on: ubuntu-latest
-    steps:
-      - name: Refer Env Variable
-        run: echo "[INFO] Running deployment on ${{vars.HOST}} and the user is ${{vars.USER}} and the secret is ${{secrets.PASSWORD}} and the reference is ${{github.ref}}"        
-    environment:
-      name: Production    
+  Adding-Requirements:
+     name: adding requirements from requirements.txt
+     runs-on: ubuntu-latest
+     steps:
+       - name: Checkout Code
+         uses: actions/checkout@v5.1.0
+       - name: setup Python
+         uses: actions/setup-python@v7.0.0
+         with:
+           python-version: '3.10'
+       - name: install dependencies
+         run: |
+           python -m pip install --upgrade pip
+           pip install -r requirements.txt
+       - name: Run Unit Tests
+         run: pytest -v
+        
