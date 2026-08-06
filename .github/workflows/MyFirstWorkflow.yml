@@ -33,4 +33,24 @@ jobs:
          with:
            name: unit test report
            path: reports/
-        
+  codeql:
+    name: Code Quality Security Scan 
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      matrix:
+        language: ['python']  
+    steps:
+       - name: Checkout Code
+         uses: actions/checkout@v5.1.0
+       - name: Initialize CodeQL
+         uses: github/codeql-action/init@v1
+         with:
+          languages: ${{ matrix.language }}  
+       - name: Perform CodeQL Analysis
+         uses: github/codeql-action/analyze@v1.1
+         with:
+           category: "security"
