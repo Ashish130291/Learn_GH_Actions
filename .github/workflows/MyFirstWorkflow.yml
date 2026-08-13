@@ -79,6 +79,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: false
+          load: true
           tags: my-first-app:${{ steps.vars.outputs.IMAGE_TAGS }}
       - name: Save Docker Image
         run: docker save my-first-app:${{ steps.vars.outputs.IMAGE_TAGS }} -o my-first-app.tar
