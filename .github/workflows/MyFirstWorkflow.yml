@@ -70,7 +70,7 @@ jobs:
           IMAGE_TAGS= "${{ github.run_id}}-${GITHUB_SHA::4}"
           echo "Image Tag = $IMAGE_TAGS">> $GITHUB_OUTPUT
       - name: Build image 
-        uses: docker/build-push-actions@v5
+        uses: docker/build-push-actions@v3.0.0
         with:
           context:
             file: ./Dockerfile
